@@ -17,3 +17,21 @@ service / on httpDefaultListener {
     }
 
 }
+
+listener http:Listener httpDefaultListener1 = http:getDefaultListener();
+
+service /health on httpDefaultListener1 {
+    resource function get .() returns json|error {
+        do {
+            log:printInfo("Called Health API");
+            return {
+                "ok": true
+            };
+        } on fail error err {
+            // handle error
+            return error("unhandled error", err);
+        }
+    }
+
+}
+
