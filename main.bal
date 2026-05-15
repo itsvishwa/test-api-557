@@ -3,12 +3,12 @@ import ballerina/log;
 
 listener http:Listener httpDefaultListener = http:getDefaultListener();
 
-service / on httpDefaultListener {
-    resource function get greet() returns json|error {
+service /scoob on httpDefaultListener {
+    resource function get .() returns json|error {
         do {
-            log:printInfo("Called greet API");
+            log:printInfo("Called the scoob");
             return {
-                "msg": "Greeting"
+                "msg": "Hey, I'm Scoob"
             };
         } on fail error err {
             // handle error
@@ -20,12 +20,12 @@ service / on httpDefaultListener {
 
 listener http:Listener httpDefaultListener1 = http:getDefaultListener();
 
-service /health on httpDefaultListener1 {
+service /batman on httpDefaultListener1 {
     resource function get .() returns json|error {
         do {
-            log:printInfo("Called Health API");
+            log:printInfo("BatMan called");
             return {
-                "ok": true
+                "msg": "hey, I'm Batman"
             };
         } on fail error err {
             // handle error
